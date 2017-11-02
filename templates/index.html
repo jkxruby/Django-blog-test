@@ -73,61 +73,90 @@
         </div>
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="content pure-u-1 pure-u-md-3-4">
         <div>
+
+
+
+        {% for i in ItemInfo %}
             <!-- A wrapper for all the blog posts -->
+
             <div class="posts">
                 <h1 class="content-subhead">Pinned Post</h1>
+
 
                 <!-- A single blog post -->
                 <section class="post">
                     <header class="post-header">
                         <img class="post-avatar" alt="Tilo Mitra&#x27;s avatar" height="48" width="48" src="{% static 'img/common/tilo-avatar.png' %}">
 
-                        <h2 class="post-title">{{ title }}</h2>
+                        <h2 class="post-title">{{ i.area }}</h2>
 
                         <p class="post-meta">
-                            By <a href="#" class="post-author">Tilo Mitra</a> under <a class="post-category post-category-design" href="#">{{ price }}</a> <a class="post-category post-category-pure" href="#">Pure</a>
+                            By <a href="#" class="post-author">Tilo Mitra</a> under <a class="post-category post-category-design" href="#">{{ i.price }}</a> <a class="post-category post-category-pure" href="#">{{ i.price }}</a>
                         </p>
                     </header>
 
                     <div class="post-description">
                         <p>
-                            {{ url }}
+                            {{ i.title }}
                         </p>
                     </div>
                 </section>
+
             </div>
+
+
 
             <div class="posts">
                 <h1 class="content-subhead">Recent Posts</h1>
+
 
                 <section class="post">
                     <header class="post-header">
                         <img class="post-avatar" alt="Eric Ferraiuolo&#x27;s avatar" height="48" width="48" src="{% static 'img/common/ericf-avatar.png' %} " >
 
-                        <h2 class="post-title">Everything You Need to Know About Grunt</h2>
+                        <h2 class="post-title">{{ i.area }}</h2>
 
                         <p class="post-meta">
-                            By <a class="post-author" href="#">Eric Ferraiuolo</a> under <a class="post-category post-category-js" href="#">JavaScript</a>
+                            By <a class="post-author" href="#">Eric Ferraiuolo</a> under <a class="post-category post-category-js" href="#">{{ i.price }}</a>
                         </p>
                     </header>
 
                     <div class="post-description">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            {{ i.title }}
                         </p>
                     </div>
                 </section>
+
+
 
                 <section class="post">
                     <header class="post-header">
                         <img class="post-avatar" alt="Reid Burke&#x27;s avatar" height="48" width="48" src="{% static 'img/common/reid-avatar.png' %} ">
 
-                        <h2 class="post-title">Photos from CSSConf and JSConf</h2>
+                        <h2 class="post-title">{{ i.area }}</h2>
 
                         <p class="post-meta">
-                            By <a class="post-author" href="#">Reid Burke</a> under <a class="post-category" href="#">Uncategorized</a>
+                            By <a class="post-author" href="#">Reid Burke</a> under <a class="post-category" href="#">{{ i.price }}</a>
                         </p>
                     </header>
 
@@ -160,24 +189,48 @@
                     </div>
                 </section>
 
+
+
                 <section class="post">
                     <header class="post-header">
                         <img class="post-avatar" alt="Andrew Wooldridge&#x27;s avatar" height="48" width="48" src="{% static 'img/common/andrew-avatar.png' %}" >
 
-                        <h2 class="post-title">YUI 3.10.2 Released</h2>
+                        <h2 class="post-title">{{ i.area }}</h2>
 
                         <p class="post-meta">
-                            By <a class="post-author" href="#">Andrew Wooldridge</a> under <a class="post-category post-category-yui" href="#">YUI</a>
+                            By <a class="post-author" href="#">Andrew Wooldridge</a> under <a class="post-category post-category-yui" href="#">{{ i.price }}</a>
                         </p>
                     </header>
 
                     <div class="post-description">
                         <p>
-                            We are happy to announce the release of YUI 3.10.2! You can find it now on the Yahoo! CDN, download it directly, or pull it in via npm. We’ve also updated the YUI Library website with the latest documentation.
+                            {{ i.title }}
                         </p>
                     </div>
                 </section>
+
+
             </div>
+        {% endfor %}
+        <div class="text text-right">
+            {% if ItemInfo.has_previous %}
+                <a href="?page={{ ItemInfo.previous_page_number }}"> < Pre </a>
+            {% endif %}
+            <span> {{ ItemInfo.number }} of {{ ItemInfo.paginator.num_pages }} </span>
+            {% if ItemInfo.has_next %}
+                <a href="?page={{ ItemInfo.next_page_number }}"> Next></a>
+            {% endif %}
+        </div>
+
+
+
+
+
+
+
+
+
+
 
             <div class="footer">
                 <div class="pure-menu pure-menu-horizontal">
